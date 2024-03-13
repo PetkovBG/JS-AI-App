@@ -5,18 +5,30 @@ import './App.css'
 import WeatherForm from './components/WeatherForm/WeatherForm'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [prompt, setPrompt] = useState('');
+  const [units, setUnits] = useState('metric');
+  const [weatherDataLoading, setWeatherDataLoading] = useState(false);
+  const [weatherDescriptionLoading, setWeatherDescriptionLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleSubmit = (newPrompt) => {
+    setErrorMsg('');
+    setWeatherDataLoading(true);
+    setWeatherDescriptionLoading(true);
+    setPrompt(newPrompt);
+  }
 
   return (
     <>
-    <div className='container'>
-      <header className='header'>
-      <h1 className='page-title'>
-        Current Weather
-      </h1>
-      <WeatherForm />
-      </header>
-    </div>
+      <div className='container'>
+        <header className='header'>
+          <h1 className='page-title'>
+            Current Weather
+          </h1>
+          <WeatherForm onSubmit={handleSubmit} />
+        </header>
+      </div>
     </>
   )
 }
