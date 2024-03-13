@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import WeatherForm from './components/WeatherForm/WeatherForm'
+import useApiRequests from './hooks/useApiRequests'
 
 function App() {
 
@@ -12,12 +13,14 @@ function App() {
   const [weatherDescriptionLoading, setWeatherDescriptionLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
+  const { error, promptData, locationData, weatherData, weatherDesciption} = useApiRequests(prompt);
+
   const handleSubmit = (newPrompt) => {
     setErrorMsg('');
     setWeatherDataLoading(true);
     setWeatherDescriptionLoading(true);
     setPrompt(newPrompt);
-  }
+  };
 
   return (
     <>
