@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -14,6 +14,31 @@ function App() {
   const [errorMsg, setErrorMsg] = useState('');
 
   const { error, promptData, locationData, weatherData, weatherDesciption} = useApiRequests(prompt);
+
+  useEffect(() => {
+    if(error) {
+      setErrorMsg(error);
+      setWeatherDataLoading(false);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if(weatherData) {
+      setWeatherDataLoading(false);
+    }
+  }, [weatherData]);
+
+  useEffect(() => {
+    if(weatherDesciption) {
+      setWeatherDescriptionLoading(false);
+    }
+  }, [weatherDesciption]);
+
+  useEffect(() => {
+    if(promptData && promptData.units) {
+      setUnits(promptData.units);
+    }
+  }, [promptData]);
 
   const handleSubmit = (newPrompt) => {
     setErrorMsg('');
