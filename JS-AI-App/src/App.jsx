@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import WeatherForm from './components/WeatherForm/WeatherForm'
 import useApiRequests from './hooks/useApiRequests'
+import Description from './components/Description/Description'
 
 function App() {
 
@@ -48,16 +49,16 @@ function App() {
   };
 
   return (
-    <>
       <div className='container'>
         <header className='header'>
           <h1 className='page-title'>
             Current Weather
           </h1>
           <WeatherForm onSubmit={handleSubmit} />
+          {error && <p className='error'>{errorMsg}</p>}
+          {true ? <Description /> : null}
         </header>
       </div>
-    </>
   )
 }
 
