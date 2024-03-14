@@ -7,7 +7,7 @@ const Description = ({ isLoading, weatherDescription }) => {
                 Description
             </h2>
             <div className='description__divider'>
-                {isLoading && <div>Loading...</div>}
+                {isLoading && <Loader />}
                 <p className='description__text'>{weatherDescription}</p>
             </div>
         </div>
