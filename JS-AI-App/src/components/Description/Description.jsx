@@ -1,3 +1,4 @@
+import Loader from '../Loader/Loader';
 import './Description.css';
 
 const Description = ({ isLoading, weatherDescription }) => {

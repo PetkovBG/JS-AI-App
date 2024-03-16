@@ -1,3 +1,4 @@
+import Loader from '../Loader/Loader';
 import './WeatherCard.css';
 
 const tempTranslator = (temp, unit) => {
@@ -81,24 +82,24 @@ const WeatherCard = ({ isLoading, data, units, country, USstate, setUnits }) => 
 
                 <div className='weather-card__temp'>
                     <span className='temp'>
-                        {tempTranslator(data.main.temp, units).value.toFixed(1)}
+                        {tempTranslator(data?.main.temp, units).value?.toFixed(1)}
                     </span>
                     <span className='temp-unit'>
-                        {tempTranslator(data.main.temp, units).unit}
+                        {tempTranslator(data?.main.temp, units).unit}
                     </span>
                 </div>
                 <div className='weather-card__wind'>
                     <div className='weather-card__wind-speed'>
                         <span className='speed'>
-                            {speedTranslator(data.wind.speed, units).value.toFixed(1)}
+                            {speedTranslator(data?.wind.speed, units).value?.toFixed(1)}
                         </span>
                         <span className='wind-unit'>
-                            {speedTranslator(data.wind.speed, units).unit}
+                            {speedTranslator(data?.wind.speed, units).unit}
                         </span>
                     </div>
                     <div className='weather-card__wind-dir' style={windDirStyle}>
                         <span className='screen-reader-text'>
-                            ${data.wind.deg}
+                            ${data?.wind.deg}
                         </span>
                     </div>
                 </div>
