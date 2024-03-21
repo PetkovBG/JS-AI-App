@@ -13,7 +13,7 @@ function App() {
   const [weatherDescriptionLoading, setWeatherDescriptionLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
-  const { error, promptData, locationData, weatherData, weatherDesciption } = useApiRequests(prompt);
+  const { error, promptData, locationData, weatherData, weatherDescription } = useApiRequests(prompt);
 
   useEffect(() => {
     if (error) {
@@ -29,10 +29,10 @@ function App() {
   }, [weatherData]);
 
   useEffect(() => {
-    if (weatherDesciption) {
+    if (weatherDescription) {
       setWeatherDescriptionLoading(false);
     }
-  }, [weatherDesciption]);
+  }, [weatherDescription]);
 
   useEffect(() => {
     if (promptData && promptData.units) {
@@ -55,7 +55,7 @@ function App() {
         </h1>
         <WeatherForm onSubmit={handleSubmit} />
         {error && <p className='error'>{errorMsg}</p>}
-        {weatherDesciption ? <Description isLoading={weatherDescriptionLoading} weatherDescription={weatherDesciption} />
+        {weatherDescription ? <Description isLoading={weatherDescriptionLoading} weatherDescription={weatherDescription} />
           : (<Description isLoading={weatherDescriptionLoading} />)}
       </header>
       <main className='main-content'>
@@ -64,7 +64,7 @@ function App() {
             isLoading={weatherDataLoading}
             data={weatherData}
             units={units}
-            country={promptData.contry}
+            country={promptData.country}
             USstate={locationData[0].state}
             setUnits={setUnits}
           />

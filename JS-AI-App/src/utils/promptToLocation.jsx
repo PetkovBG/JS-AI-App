@@ -4,12 +4,12 @@ const PromptToLocation = (prompt) => {
     const url = "https://api.openai.com/v1/chat/completions";
 
     const data = {
-        model: "gpt-3.5-turbo-0613",
+        model: "gpt-3.5-turbo-0125",
         messages: [{role: 'user', content: prompt}],
         functions: [
             {
                 name: 'displayData',
-                description: 'Get the current weather in a given location',
+                description: 'Get the current weather in a given location.',
                 parameters: {
                     type: 'object',
                     properties: {
@@ -17,11 +17,23 @@ const PromptToLocation = (prompt) => {
                             type: 'string',
                             description: 'Country name.',
                         },
-                        USstate: {
+                        countryCode: {
+                            type: 'string',
+                            description: 'Country code. Use ISO-3166'
+                        },
+                        state: {
                             type: 'string',
                             description: 'Two-letter state code.'
                         },
+                        USstate: {
+                            type: 'string',
+                            description: 'Full state name.'
+                        },
                         city: {
+                            type: 'string',
+                            description: 'location unit: metric or imperial.'
+                        },
+                        unit: {
                             type: 'string',
                             description: 'location unit: metric or imperial.'
                         }
@@ -39,7 +51,6 @@ const PromptToLocation = (prompt) => {
         ],
         function_call: 'auto',
     }
-
     const params = {
         headers: {
             Authorization: `Bearer ${import.meta.env.VITE_OPENAI}`,
@@ -52,6 +63,7 @@ const PromptToLocation = (prompt) => {
     return fetch(url, params)
     .then((response) => response.json())
     .then((data) => {
+        console.log('data', data);
         const promptRes = JSON.parse(
             data.choices[0].message.function_call.arguments
         );
@@ -61,9 +73,10 @@ const PromptToLocation = (prompt) => {
             if(promptRes.countryCode === 'US') {
                 return `${promptRes.city},${promptRes.state},${promptRes.country}`;
             } else {
-                return `${promptRes.city}, ${promptRes.country}`
+                return `${promptRes.city},${promptRes.country}`
             }
         }
+        console.log('locString', locationString());
 
         const promptData = {
             locationString: locationString(),

@@ -1,6 +1,7 @@
 
 
 const WeatherDescription = (prompt, weatherData) => {
+    console.log('weather Desc component');
 
     const url = 'https://api.openai.com/v1/chat/completions';
 
@@ -15,16 +16,15 @@ const WeatherDescription = (prompt, weatherData) => {
     const newPrompt = `Question: ${prompt}. Weather Data: ${JSON.stringify(weatherData)}`
 
     const data = {
-        model: 'gpt-4-0613',
+        model: 'gpt-4-turbo-preview',
         messages: [
             {role: "system", content: sysMsg},
             {role: "user", content: newPrompt},
         ]
     }
-
     const params = {
         headers: {
-            Authorization: `Bearer ${import.meta.evn.VITE_OPENAI}`,
+            Authorization: `Bearer ${import.meta.env.VITE_OPENAI}`,
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
@@ -34,6 +34,7 @@ const WeatherDescription = (prompt, weatherData) => {
     return fetch(url, params)
     .then((response) => response.json())
     .then((data) => {
+        console.log('weather Desc data', data);
         return data.choices[0].message.content
     })
     .catch((error) => {

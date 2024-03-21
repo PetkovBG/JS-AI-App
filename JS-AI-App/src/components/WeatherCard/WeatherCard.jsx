@@ -47,12 +47,28 @@ const speedTranslator = (speed, units) => {
 
 const WeatherCard = ({ isLoading, data, units, country, USstate, setUnits }) => {
 
-
+    console.log('country Weather card', country);
+    //TODO - set default values for data
     //TODO remove ? after data accross this component
     //TODO - add props to jsx when available to display data
+    // if(!data) {
+    //     data = {
+    //         name: "--",
+    //         sys: {
+    //           country: "--",
+    //         },
+    //         main: {
+    //           temp: 273,
+    //         },
+    //         wind: {
+    //           speed: 0,
+    //           deg: 0,
+    //         },
+    //       }
+    // }
     const displayState = () => {
         if (data?.sys.country === 'US') {
-            return `${USstate}`
+            return `, ${USstate}`
         } else {
             return '';
         }
@@ -99,7 +115,7 @@ const WeatherCard = ({ isLoading, data, units, country, USstate, setUnits }) => 
                     </div>
                     <div className='weather-card__wind-dir' style={windDirStyle}>
                         <span className='screen-reader-text'>
-                            ${data?.wind.deg}
+                            {data?.wind.deg}
                         </span>
                     </div>
                 </div>
@@ -110,5 +126,24 @@ const WeatherCard = ({ isLoading, data, units, country, USstate, setUnits }) => 
         </article>
     )
 }
+
+WeatherCard.defaultProps = {
+    data: {
+      name: "--",
+      sys: {
+        country: "--",
+      },
+      main: {
+        temp: 273,
+      },
+      wind: {
+        speed: 0,
+        deg: 0,
+      },
+    },
+    units: "metric",
+    country: '--',
+    setUnits: () => {},
+  };
 
 export default WeatherCard;

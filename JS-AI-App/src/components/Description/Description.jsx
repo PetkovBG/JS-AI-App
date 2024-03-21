@@ -2,6 +2,7 @@ import Loader from '../Loader/Loader';
 import './Description.css';
 
 const Description = ({ isLoading, weatherDescription }) => {
+    console.log('weather description received--', weatherDescription);
     return (
         <div className='description'>
             <h2 className='description__title'>

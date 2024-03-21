@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import WeatherData from "../utils/weatherData";
 import LocationToCoordinates from "../utils/locationToCoordinates";
+import PromptToLocation from "../utils/promptToLocation";
 import WeatherDescription from "../utils/weatherDescription";
 
 const useApiRequests = (prompt) => {
@@ -17,7 +18,7 @@ const useApiRequests = (prompt) => {
             }
 
             try {
-                const promptDataRes = await PromptLocation(prompt);
+                const promptDataRes = await PromptToLocation(prompt);
                 setPromptData(promptDataRes);
 
                 const locationDataRes = await LocationToCoordinates(promptDataRes.locationString);
@@ -27,7 +28,9 @@ const useApiRequests = (prompt) => {
                 setWeatherData(weatherDataRes);
 
                 const weatherDescriptionRes = await WeatherDescription(prompt, weatherDataRes)
+                console.log('api-desc--', weatherDescriptionRes);
                 setWeatherDescription(weatherDescriptionRes);
+                
             } catch (error) {
                 setError(error);
                 console.log('Error in API request: ', error);
