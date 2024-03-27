@@ -1,0 +1,97 @@
+.login-container {
+    max-width: 440px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* width: 330px; */
+    background-color: white;
+    border-radius: 8px;
+    padding: 24px;
+    flex-direction: column;
+}
+
+.login-wrapper::before {
+    content: "";
+    position: fixed;
+    /* Covers the whole screen */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* background-color: salmon; */
+    background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    /* object-fit: cover; */
+    background-size: cover;
+    z-index: -1;
+    /* Ensures it doesn't overlay content */
+}
+
+
+.login-wrapper .title {
+    /* background-color: green; */
+    /* line-height: 80px; */
+    /* width: 100%; */
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0077ff;
+}
+
+.login-form {
+    padding: 10px 20px 25px 20px;
+}
+
+.login-form .row {
+    height: 45px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.login-form .row input {
+    width: 72%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    padding-left: 60px;
+    font-size: 16px;
+    transition: all .2s ease-in;
+}
+
+.login-form .row input:focus {
+    border-bottom: 1.5px solid #0077ff;
+}
+
+.login-form .row i {
+    position: absolute;
+    width: 47px;
+    height: 100%;
+    color: white;
+    background-color: #0077ff;
+    border: 1px solid #0077ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    background-color: #0077ff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background-color: #0069e1;
+}
