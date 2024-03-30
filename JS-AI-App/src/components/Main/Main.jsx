@@ -16,7 +16,7 @@ const Main = () => {
         if (!isAuthenticated) {
             navigate('/');
         }
-    }, [isAuthenticated])
+    }, [isAuthenticated, navigate]);
 
 
     const [prompt, setPrompt] = useState('');
