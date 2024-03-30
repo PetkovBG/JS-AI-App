@@ -5,11 +5,19 @@ import Description from "../Description/Description";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import './Main.css';
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
 
-    const { isAuthenticated, onLogout, username } = useAuthContext();
-    console.log('isAuth', isAuthenticated);
+    const { isAuthenticated, } = useAuthContext();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/');
+        }
+    }, [isAuthenticated])
+
 
     const [prompt, setPrompt] = useState('');
     const [units, setUnits] = useState('metric');
