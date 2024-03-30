@@ -4,8 +4,12 @@ import WeatherForm from "../WeatherForm/WeatherForm";
 import Description from "../Description/Description";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import './Main.css';
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const Main = () => {
+
+    const { isAuthenticated, onLogout, username } = useAuthContext();
+    console.log('isAuth', isAuthenticated);
 
     const [prompt, setPrompt] = useState('');
     const [units, setUnits] = useState('metric');
@@ -49,7 +53,7 @@ const Main = () => {
 
     return (
         <>
-            <div className='container'>
+            {isAuthenticated && <div className='container'>
                 <header className='header'>
                     <h1 className='page-title'>
                         Current Weather
@@ -75,7 +79,7 @@ const Main = () => {
                         />
                     )}
                 </main>
-            </div>
+            </div>}
         </>
 
     )

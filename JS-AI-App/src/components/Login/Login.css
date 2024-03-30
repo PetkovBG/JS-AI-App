@@ -95,3 +95,7 @@
 .login-btn:hover {
     background-color: #0069e1;
 }
+
+.error-wrapper {
+    color: red;
+}
