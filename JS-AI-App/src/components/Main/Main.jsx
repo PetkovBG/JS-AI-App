@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Main = () => {
 
-    const { isAuthenticated, } = useAuthContext();
+    const { isAuthenticated, onLogout} = useAuthContext();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -61,6 +61,7 @@ const Main = () => {
 
     return (
         <>
+      
             {isAuthenticated && <div className='container'>
                 <header className='header'>
                     <h1 className='page-title'>

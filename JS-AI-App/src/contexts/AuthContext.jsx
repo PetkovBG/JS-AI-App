@@ -32,6 +32,7 @@ export const AuthContextProvider = ({children}) => {
 
     const onLogout = () => {
         setAuth({});
+        navigate('/');
     }
 
     const contextValues = {

@@ -86,6 +86,8 @@ const WeatherCard = ({ isLoading, data, units, country, USstate, setUnits }) => 
         transform: `rotate(${data?.wind.deg + 90}deg)`
     }
 
+    console.log('data', data);
+
     return (
         <article className='weather-card'>
             {isLoading && <Loader />}
@@ -114,9 +116,9 @@ const WeatherCard = ({ isLoading, data, units, country, USstate, setUnits }) => 
                         </span>
                     </div>
                     <div className='weather-card__wind-dir' style={windDirStyle}>
-                        <span className='screen-reader-text'>
+                        {/* <span className='screen-reader-text'>
                             {data?.wind.deg}
-                        </span>
+                        </span> */}
                     </div>
                 </div>
                 <button id='units' onClick={handleUnitChange}>

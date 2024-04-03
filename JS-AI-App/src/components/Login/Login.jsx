@@ -41,8 +41,8 @@ const Login = () => {
                             password: e.target.value,
                         }))} onFocus={onFocusHandler} />
                     </div>
-                        <div className='error-wrapper'>{error && <p>Invalid username or password</p>}</div>
-                    <div className="row">
+                        <div className='error-container'>{error && <p className='error-p'>Invalid username or password</p>}</div>
+                    <div className="btn-wrapper">
                         <button className="login-btn">Login</button>
                     </div>
                 </form>
