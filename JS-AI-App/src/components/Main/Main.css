@@ -3,7 +3,7 @@
     margin: 0 auto;
     padding: 2rem;
     text-align: center; */
-    margin: 4rem;
+    /* margin: 4rem; */
   }
   
   .container {
@@ -42,4 +42,36 @@
   
   .main-content {
     width: 100%;
+  }
+
+  .outter-container {
+    /* margin: 4rem; */
+    margin: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .link-wrapper {
+    color: #0077ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    /* margin-bottom: 20px; */
+    margin-top: 0px;
+    position: relative;
+    margin-top: 20px;
+  }
+
+  .home-link {
+    /* color: red; */
+    position: absolute;
+    bottom: 20px;
+    right: 500px;
+    padding: 8px 18px;
+    border: 1px solid blue;
+    border-radius: 12px;
   }

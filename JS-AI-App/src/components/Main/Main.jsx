@@ -5,11 +5,11 @@ import Description from "../Description/Description";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import './Main.css';
 import { useAuthContext } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Main = () => {
 
-    const { isAuthenticated, onLogout} = useAuthContext();
+    const { isAuthenticated, onLogout } = useAuthContext();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -61,34 +61,38 @@ const Main = () => {
 
     return (
         <>
-      
-            {isAuthenticated && <div className='container'>
-                <header className='header'>
-                    <h1 className='page-title'>
-                        Current Weather
-                    </h1>
-                    <WeatherForm onSubmit={handleSubmit} />
-                    {error && <p className='error'>{errorMsg}</p>}
-                    {weatherDescription ? <Description isLoading={weatherDescriptionLoading} weatherDescription={weatherDescription} />
-                        : (<Description isLoading={weatherDescriptionLoading} />)}
-                </header>
-                <main className='main-content'>
-                    {weatherData.name && !errorMsg ? (
-                        <WeatherCard
-                            isLoading={weatherDataLoading}
-                            data={weatherData}
-                            units={units}
-                            country={promptData.country}
-                            USstate={locationData[0].state}
-                            setUnits={setUnits}
-                        />
-                    ) : (
-                        <WeatherCard
-                            isLoading={weatherDataLoading}
-                        />
-                    )}
-                </main>
-            </div>}
+            <div className="outter-container">
+                <div className="link-wrapper">
+                    <Link className="home-link" to={'/'}>Home</Link>
+                </div>
+                {isAuthenticated && <div className='container'>
+                    <header className='header'>
+                        <h1 className='page-title'>
+                            Current Weather
+                        </h1>
+                        <WeatherForm onSubmit={handleSubmit} />
+                        {error && <p className='error'>{errorMsg}</p>}
+                        {weatherDescription ? <Description isLoading={weatherDescriptionLoading} weatherDescription={weatherDescription} />
+                            : (<Description isLoading={weatherDescriptionLoading} />)}
+                    </header>
+                    <main className='main-content'>
+                        {weatherData.name && !errorMsg ? (
+                            <WeatherCard
+                                isLoading={weatherDataLoading}
+                                data={weatherData}
+                                units={units}
+                                country={promptData.country}
+                                USstate={locationData[0].state}
+                                setUnits={setUnits}
+                            />
+                        ) : (
+                            <WeatherCard
+                                isLoading={weatherDataLoading}
+                            />
+                        )}
+                    </main>
+                </div>}
+            </div>
         </>
 
     )
